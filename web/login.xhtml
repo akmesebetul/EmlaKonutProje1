@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="bootstrap.css" />
+    </h:head>
+    <h:body>
+         <h1> Login </h1>
+        <h:form>
+            <p> Kullanıcı Adı : <h:inputText value="#{loginController.user.kullanciAdi}"/>  </p>
+            <p> Şifre : <h:inputSecret value="#{loginController.user.sifre}"/>  </p>
+            <h:commandButton action="#{loginController.login()}" value="Login" />
+        </h:form>
+    </h:body>
+</html>
