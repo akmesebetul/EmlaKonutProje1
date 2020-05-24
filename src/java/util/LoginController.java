@@ -13,7 +13,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-
+/**
+ *
+ * @author sinem
+ */
 @Named(value = "loginController")
 @SessionScoped
 public class LoginController implements Serializable {
