@@ -1,12 +1,23 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="bootstrap.css" />
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h1> Hoşgeldiniz </h1>
+        <h:form>
+            <h:commandButton styleClass="btn btn-sm btn-primary " action="#{loginController.openLoginPage()}" value="Giriş Yap"/>
+             <h:commandButton styleClass="btn btn-sm btn-primary " action="#{loginController.openSignUpPage()}" value="Kayıt Ol"/>
+        </h:form>
+
     </h:body>
 </html>
-

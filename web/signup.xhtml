@@ -15,9 +15,10 @@ and open the template in the editor.
     <h:body>
          <h1> Login </h1>
         <h:form>
-            <p> Kullanıcı Adı : <h:inputText value="#{loginController.user.kullanciAdi}"/>  </p>
-            <p> Şifre : <h:inputSecret value="#{loginController.user.sifre}"/>  </p>
-            <h:commandButton action="#{loginController.login()}" value="Login" />
+            <p> Kullanıcı Adı : <h:inputText value="#{kullaniciController.kullanici.kullanciAdi}"/>  </p>
+            <p> Şifre : <h:inputSecret value="#{kullaniciController.kullanici.sifre}"/>  </p>
+            <p> Ad Soyad : <h:inputText value="#{kullaniciController.kullanici.adSoyad}"/>  </p>
+            <h:commandButton action="#{kullaniciController.checkUserAddable}" value="Login" />
         </h:form>
     </h:body>
 </html>
