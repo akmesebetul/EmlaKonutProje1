@@ -32,22 +32,30 @@ and open the template in the editor.
                                     <f:selectItems value="#{ilceController.ilceDao.findByIl(ilanController.ilan.ilce.il.il_adi)}" />
                                 </h:selectOneMenu>
                             </div>
-                            <label for="inputName">İlan Başlık</label>
-                            <h:inputText styleClass="form-control" value="#{ilanController.ilan.ilan_baslik}"/>
+                            <label for="baslik">İlan Başlık</label>
+                            <h:inputText id="baslik" styleClass="form-control" value="#{ilanController.ilan.ilan_baslik}" validator="#{validationBean.validate}" />
+                            <h:message for="baslik" style="color: red" />
 
-                            <label for="inputName">İlan Açıklama</label>
-                            <h:inputText styleClass="form-control" value="#{ilanController.ilan.ilan_aciklama}"/>
+                            <label for="aciklama">İlan Açıklama</label>
+                            <h:inputText id="aciklama" styleClass="form-control" value="#{ilanController.ilan.ilan_aciklama}" validator="#{validationBean.validate}" />
+                            <h:message for="aciklama" style="color: red" />
                             <div>
                                 <h:selectOneMenu value="#{ilanController.ilan.ilan_tipi.tip_adi}">
                                     <f:selectItems value="#{ilanTipiController.ilanTipiDao.findAll()}" />
                                 </h:selectOneMenu>
                             </div>
 
-                            <label for="inputName">Fiyat</label>
-                            <h:inputText styleClass="form-control" value="#{ilanController.ilan.fiyat}"/>
+                            <label for="fiyat">Fiyat</label>
+                            <h:inputText id="fiyat" styleClass="form-control" value="#{ilanController.ilan.fiyat}" validator="#{validationBean.validate}" />
+                            <h:message for="fiyat" style="color: red" />
 
-                            <label for="inputName">İletişim No</label>
-                            <h:inputText styleClass="form-control" value="#{ilanController.ilan.iletisim_no}"/>
+                            <label for="no">İletişim No</label>
+                            <h:inputText id="no" styleClass="form-control" value="#{ilanController.ilan.iletisim_no}" validatorMessage="en az 2 en fazla 20 karekter " >
+                                <f:validateLength minimum="2" maximum="20" />   
+                            </h:inputText>
+                            <h:message for="no" style="color: red" />
+
+
                         </h:panelGroup>
                     </div>
 
