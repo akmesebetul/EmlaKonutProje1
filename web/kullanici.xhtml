@@ -6,13 +6,13 @@
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet library="css" name="bootstrap.css" />
-       
+
     </h:head>
     <h:body>
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h:form>
+                    <h:form id="kullanici-table" >
                         <h:dataTable styleClass="table table-striped" value="#{kullaniciController.clist}" var="kullanici">
                             <h:column>
                                 <f:facet name="header">Kullanici_id  </f:facet>
@@ -36,7 +36,7 @@
                     </h:form>
                 </div>
                 <div class="col-md-6">
-                    <h:form>
+                    <h:form id="kullanici-form ">
                         <div class="form-group">
                             <h:inputHidden value="#{kullaniciController.kullanici.kullaniciId}"/>
                             <label for="inputName">Kullanıcı Adı </label>
@@ -49,9 +49,15 @@
                             <h:inputText styleClass="form-control" value="#{kullaniciController.kullanici.adminMi}"/>
                         </div>
                         <div class="form-group">
-                            <h:commandButton rendered="#{kullaniciController.kullanici.kullaniciId != 0}" styleClass="btn btn-info" value="Update" action="#{kullaniciController.update}"/>
-                            <h:commandButton rendered="#{kullaniciController.kullanici.kullaniciId == 0}" styleClass="btn btn-primary" value="Create" action="#{kullaniciController.create}"/>
-                            <h:commandButton rendered="#{kullaniciController.kullanici.kullaniciId != 0}" styleClass="btn btn-secondary" value="Clear Form" action="#{kullaniciController.clearForm}"/>
+                            <h:commandButton rendered="#{kullaniciController.kullanici.kullaniciId != 0}" styleClass="btn btn-info" value="Update" action="#{kullaniciController.update}" >
+                                <f:ajax execute="kullanici-form" render="kullanici-form kullanici-table" />
+                            </h:commandButton>
+                            <h:commandButton rendered="#{kullaniciController.kullanici.kullaniciId == 0}" styleClass="btn btn-primary" value="Create" action="#{kullaniciController.create}" >
+                                <f:ajax execute="kullanici-form" render="kullanici-form kullanici-table" />
+                            </h:commandButton>
+                            <h:commandButton rendered="#{kullaniciController.kullanici.kullaniciId != 0}" styleClass="btn btn-secondary" value="Clear Form" action="#{kullaniciController.clearForm}" >
+                                <f:ajax execute="kullanici-form" render="kullanici-form kullanici-table" />
+                            </h:commandButton>
                         </div>
                     </h:form>
                 </div>

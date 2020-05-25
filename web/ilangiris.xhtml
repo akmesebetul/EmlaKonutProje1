@@ -29,7 +29,9 @@ and open the template in the editor.
                 <label for="inputName">Oda Sayısı(Yalnızca Konutlarda)</label>
                 <h:inputText styleClass="form-control" value="#{ilanController.ilan.emlak.odaSayisi}"/>
             </div>
-            <h:commandButton styleClass="btn btn-primary" value="Create" action="#{emlakController.navigateToIlanEkle()}"/>
+            <h:commandButton styleClass="btn btn-primary" value="Create" action="#{emlakController.navigateToIlanEkle()}" >
+                <f:ajax execute="formId" render="formId ilan-table" />
+            </h:commandButton>
         </h:form>      
     </h:body>
 </html>
