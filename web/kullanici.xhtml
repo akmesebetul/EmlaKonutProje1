@@ -39,14 +39,21 @@
                     <h:form id="kullanici-form ">
                         <div class="form-group">
                             <h:inputHidden value="#{kullaniciController.kullanici.kullaniciId}"/>
-                            <label for="inputName">Kullanıcı Adı </label>
-                            <h:inputText styleClass="form-control" value="#{kullaniciController.kullanici.kullanciAdi}"/>
-                            <label for="inputName">Şifre </label>
-                            <h:inputText styleClass="form-control" value="#{kullaniciController.kullanici.sifre}"/>
-                            <label for="inputName">Ad Soyad </label>
-                            <h:inputText styleClass="form-control" value="#{kullaniciController.kullanici.adSoyad}"/>
-                            <label for="inputName">Admin mi </label>
-                            <h:inputText styleClass="form-control" value="#{kullaniciController.kullanici.adminMi}"/>
+                            <label for="adii">Kullanıcı Adı </label>
+                            <h:inputText id="adii" styleClass="form-control" value="#{kullaniciController.kullanici.kullanciAdi}" validator="#{validationBean.validate}" />
+                            <h:message for="adii" style="color: red" />
+
+                            <label for="sifree">Şifre </label>
+                            <h:inputText id="sifree" styleClass="form-control" value="#{kullaniciController.kullanici.sifre}" validator="#{validationBean.validate}" />
+                            <h:message for="sifree" style="color: red" />
+
+                            <label for="adsoyadi">Ad Soyad </label>
+                            <h:inputText id="adsoyadi" styleClass="form-control" value="#{kullaniciController.kullanici.adSoyad}" validator="#{validationBean.validate}" />
+                            <h:message for="adsoyadi" style="color: red" />
+
+                            <label for="adminmi">Admin mi </label>
+                            <h:inputText id="adminmi" styleClass="form-control" value="#{kullaniciController.kullanici.adminMi}" validator="#{validationBean.validate}" />
+                            <h:message for="adminmi" style="color: red" />
                         </div>
                         <div class="form-group">
                             <h:commandButton rendered="#{kullaniciController.kullanici.kullaniciId != 0}" styleClass="btn btn-info" value="Update" action="#{kullaniciController.update}" >

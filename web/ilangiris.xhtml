@@ -22,12 +22,17 @@ and open the template in the editor.
                     <f:selectItem itemValue="İşyeri" >İşyeri</f:selectItem> 
                     <f:selectItem itemValue="Proje-Il" >Proje-İl</f:selectItem> 
                 </h:selectOneRadio>
-                <label for="inputName">Alan(m2)</label>
-                <h:inputText styleClass="form-control" value="#{ilanController.ilan.emlak.alan}"/>
-                <label for="inputName">Adres</label>
-                <h:inputText styleClass="form-control" value="#{ilanController.ilan.emlak.adres}"/>
-                <label for="inputName">Oda Sayısı(Yalnızca Konutlarda)</label>
-                <h:inputText styleClass="form-control" value="#{ilanController.ilan.emlak.odaSayisi}"/>
+                <label for="alan">Alan(m2)</label>
+                <h:inputText id="alan" styleClass="form-control" value="#{ilanController.ilan.emlak.alan}" validator="#{validationBean.validate}" />
+                <h:message for="alan" style="color: red" />
+
+                <label for="adres">Adres</label>
+                <h:inputText id="adres" styleClass="form-control" value="#{ilanController.ilan.emlak.adres}" validator="#{validationBean.validate}" />
+                <h:message for="adres" style="color: red" />
+
+                <label for="odasayisi" >Oda Sayısı(Yalnızca Konutlarda)</label>
+                <h:inputText id="odasayisi" styleClass="form-control" value="#{ilanController.ilan.emlak.odaSayisi}" validator="#{validationBean.validate}" />
+                <h:message for="odasayisi" style="color: red" />
             </div>
             <h:commandButton styleClass="btn btn-primary" value="Create" action="#{emlakController.navigateToIlanEkle()}" >
                 <f:ajax execute="formId" render="formId ilan-table" />
