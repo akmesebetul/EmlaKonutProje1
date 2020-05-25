@@ -13,10 +13,16 @@ and open the template in the editor.
         <h:outputStylesheet library="css" name="bootstrap.css" />
     </h:head>
     <h:body>
-         <h1> Login </h1>
+        <h1> Login </h1>
         <h:form>
-            <p> Kullanıcı Adı : <h:inputText value="#{loginController.user.kullanciAdi}"/>  </p>
-            <p> Şifre : <h:inputSecret value="#{loginController.user.sifre}"/>  </p>
+            <p> Kullanıcı Adı : <h:inputText id="ad" value="#{loginController.user.kullanciAdi}" validatorMessage="en az 2 en fazla 20 karekter " >
+                    <f:validateLength minimum="2" maximum="20" />   
+                </h:inputText>
+                <h:message for="ad" style="color: red" /></p>  
+            <p> Şifre : <h:inputSecret value="#{loginController.user.sifre}" validatorMessage="en az 2 en fazla 20 karekter " >
+                    <f:validateLength minimum="2" maximum="20" />   
+                </h:inputSecret>
+                <h:message for="kullanici" style="color: red" /></p>
             <h:commandButton action="#{loginController.login()}" value="Login" />
         </h:form>
     </h:body>
