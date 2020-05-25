@@ -13,51 +13,57 @@ and open the template in the editor.
 
     </h:head>
     <h:body>
-         <div class="col-md-6" var = "ilan">
-                    <h:form id="formId">
-                        <div class="form-group">
+        <div class="col-md-6" var = "ilan">
+            <h:form id="formId">
+                <div class="form-group">
+                    <div>
+                        <h:selectOneMenu id="ilId" value="#{ilanController.ilan.ilce.il.il_adi}" >
+                            <f:selectItems value="#{ilController.ilDao.findAll()}"/>
+                            <f:ajax event="change" render="@form" />
+                        </h:selectOneMenu>
+                    </div>   
+                    <div>
+                        <h:panelGroup id="ilcePanel"
+                                      styleClass="text"
+                                      rendered="#{not(ilanController.ilan.ilce.il.il_adi eq null)}">
+
                             <div>
-                                <h:selectOneMenu id="ilId" value="#{ilanController.ilan.ilce.il.il_adi}" >
-                                    <f:selectItems value="#{ilController.ilDao.findAll()}"/>
-                                    <f:ajax event="change" render="@form" />
+                                <h:selectOneMenu  id = "ilceId" value="#{ilanController.ilan.ilce.ilce_adi}">
+                                    <f:selectItems value="#{ilceController.ilceDao.findByIl(ilanController.ilan.ilce.il.il_adi)}" />
                                 </h:selectOneMenu>
-                            </div>   
+                            </div>
+                            <label for="inputName">İlan Başlık</label>
+                            <h:inputText styleClass="form-control" value="#{ilanController.ilan.ilan_baslik}"/>
+
+                            <label for="inputName">İlan Açıklama</label>
+                            <h:inputText styleClass="form-control" value="#{ilanController.ilan.ilan_aciklama}"/>
                             <div>
-                                <h:panelGroup id="ilcePanel"
-                                              styleClass="text"
-                                              rendered="#{not(ilanController.ilan.ilce.il.il_adi eq null)}">
-
-                                    <div>
-                                        <h:selectOneMenu  id = "ilceId" value="#{ilanController.ilan.ilce.ilce_adi}">
-                                            <f:selectItems value="#{ilceController.ilceDao.findByIl(ilanController.ilan.ilce.il.il_adi)}" />
-                                        </h:selectOneMenu>
-                                    </div>
-                                    <label for="inputName">İlan Başlık</label>
-                                    <h:inputText styleClass="form-control" value="#{ilanController.ilan.ilan_baslik}"/>
-
-                                    <label for="inputName">İlan Açıklama</label>
-                                    <h:inputText styleClass="form-control" value="#{ilanController.ilan.ilan_aciklama}"/>
-                                    <div>
-                                        <h:selectOneMenu value="#{ilanController.ilan.ilan_tipi.tip_adi}">
-                                            <f:selectItems value="#{ilanTipiController.ilanTipiDao.findAll()}" />
-                                        </h:selectOneMenu>
-                                    </div>
-
-                                    <label for="inputName">Fiyat</label>
-                                    <h:inputText styleClass="form-control" value="#{ilanController.ilan.fiyat}"/>
-
-                                    <label for="inputName">İletişim No</label>
-                                    <h:inputText styleClass="form-control" value="#{ilanController.ilan.iletisim_no}"/>
-                                </h:panelGroup>
+                                <h:selectOneMenu value="#{ilanController.ilan.ilan_tipi.tip_adi}">
+                                    <f:selectItems value="#{ilanTipiController.ilanTipiDao.findAll()}" />
+                                </h:selectOneMenu>
                             </div>
 
-                        </div>
-                        <div class="form-group">
-                            <h:commandButton rendered="#{ilanController.ilan.ilan_id != 0}" styleClass="btn btn-info" value="Update" action="#{ilanController.update}"/>
-                            <h:commandButton rendered="#{ilanController.ilan.ilan_id == 0}" styleClass="btn btn-primary" value="Create" action="#{ilanController.create()}"/>
-                            <h:commandButton rendered="#{ilanController.ilan.ilan_id != 0}" styleClass="btn btn-secondary" value="Clear Form" action="#{ilanController.clearForm}"/>
-                        </div>
-                    </h:form>
-                </div>     
+                            <label for="inputName">Fiyat</label>
+                            <h:inputText styleClass="form-control" value="#{ilanController.ilan.fiyat}"/>
+
+                            <label for="inputName">İletişim No</label>
+                            <h:inputText styleClass="form-control" value="#{ilanController.ilan.iletisim_no}"/>
+                        </h:panelGroup>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <h:commandButton rendered="#{ilanController.ilan.ilan_id != 0}" styleClass="btn btn-info" value="Update" action="#{ilanController.update}">
+                        <f:ajax execute="formId" render="formId ilan-table" />
+                    </h:commandButton>
+                    <h:commandButton rendered="#{ilanController.ilan.ilan_id == 0}" styleClass="btn btn-primary" value="Create" action="#{ilanController.create()}">
+                        <f:ajax execute="formId" render="formId ilan-table" />
+                    </h:commandButton>
+                    <h:commandButton rendered="#{ilanController.ilan.ilan_id != 0}" styleClass="btn btn-secondary" value="Clear Form" action="#{ilanController.clearForm}">
+                        <f:ajax execute="formId" render="formId ilan-table" />
+                    </h:commandButton>
+                </div>
+            </h:form>
+        </div>     
     </h:body>
 </html>

@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h:form>
+                    <h:form id="ilan-table">
                         <h:dataTable styleClass="table table-striped" value="#{ilanController.clist}" var="ilan">
                             <h:column>
                                 <f:facet name="header">İlan ID</f:facet>
@@ -45,7 +45,9 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">DELETE </f:facet>
-                                <h:commandButton styleClass="btn btn-sm btn-danger " action="#{ilanController.deleteConfirm(ilan)}" value="Delete"/>
+                                <h:commandButton styleClass="btn btn-sm btn-danger " action="#{ilanController.deleteConfirm(ilan)}" value="Delete">
+                                    <f:ajax execute="formId" render="formId ilan-table" />
+                                </h:commandButton>
                             </h:column>
                         </h:dataTable>
                         <h:commandButton styleClass="btn btn-sm btn-primary " action="#{loginController.logout()}" value="Çıkış Yap"/>
