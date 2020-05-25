@@ -10,11 +10,11 @@ package entity;
  * @author MalatyaPc
  */
 public class Ilce {
-    int ilce_id;
+    Long ilce_id;
     String ilce_adi;
     Il il;
 
-    public Ilce(int ilce_id, String ilce_adi, Il il) {
+    public Ilce(Long ilce_id, String ilce_adi, Il il) {
         this.ilce_id = ilce_id;
         this.ilce_adi = ilce_adi;
         this.il = il;
@@ -23,11 +23,11 @@ public class Ilce {
     public Ilce() {
     }
 
-    public int getIlce_id() {
+    public Long getIlce_id() {
         return ilce_id;
     }
 
-    public void setIlce_id(int ilce_id) {
+    public void setIlce_id(Long ilce_id) {
         this.ilce_id = ilce_id;
     }
 

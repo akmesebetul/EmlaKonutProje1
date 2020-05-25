@@ -10,7 +10,8 @@ package entity;
  * @author MalatyaPc
  */
 public class Emlak {
-    int emlakId;
+
+    Long emlakId;
     int arsaId;
     int isyeriId;
     int konutId;
@@ -23,7 +24,7 @@ public class Emlak {
     public Emlak() {
     }
 
-    public Emlak(int emlakId, int arsaId, int isyeriId, int konutId, int projeIlId) {
+    public Emlak(Long emlakId, int arsaId, int isyeriId, int konutId, int projeIlId) {
         this.emlakId = emlakId;
         this.arsaId = arsaId;
         this.isyeriId = isyeriId;
@@ -31,11 +32,11 @@ public class Emlak {
         this.projeIlId = projeIlId;
     }
 
-    public int getEmlakId() {
+    public Long getEmlakId() {
         return emlakId;
     }
 
-    public void setEmlakId(int emlakId) {
+    public void setEmlakId(Long emlakId) {
         this.emlakId = emlakId;
     }
 
@@ -70,8 +71,7 @@ public class Emlak {
     public void setProjeIlId(int projeIlId) {
         this.projeIlId = projeIlId;
     }
-    
-    
+
     public String getEmlakTipi() {
         return emlakTipi;
     }
@@ -79,8 +79,8 @@ public class Emlak {
     public void setEmlakTipi(String emlakTipi) {
         this.emlakTipi = emlakTipi;
     }
-    
-      public int getAlan() {
+
+    public int getAlan() {
         return alan;
     }
 
@@ -109,10 +109,4 @@ public class Emlak {
         return "Emlak{" + "emlakId=" + emlakId + ", arsaId=" + arsaId + ", isyeriId=" + isyeriId + ", konutId=" + konutId + ", projeIlId=" + projeIlId + ", emlakTipi=" + emlakTipi + ", alan=" + alan + ", adres=" + adres + ", odaSayisi=" + odaSayisi + '}';
     }
 
-   
-
-
-   
-    
-    
 }

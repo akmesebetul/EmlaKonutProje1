@@ -42,14 +42,14 @@ public class EmlakDao {
 
     }
     
-    public Emlak find(int id){
+    public Emlak find(Long id){
         try {
             Statement st = this.getConnection().createStatement();
             ResultSet rs = st.executeQuery("select * from emlak where emlak_id = " + id);
 
             if (rs.next()) {
                 //System.out.println(rs.getString("name"));
-               Emlak emlak = new Emlak(rs.getInt("emlak_id"),rs.getInt("arsa_id"),rs.getInt("isyeri_id"),rs.getInt("konut_id"),rs.getInt("proje_il_id"));
+               Emlak emlak = new Emlak(rs.getLong("emlak_id"),rs.getInt("arsa_id"),rs.getInt("isyeri_id"),rs.getInt("konut_id"),rs.getInt("proje_il_id"));
                return emlak;
                     
             }

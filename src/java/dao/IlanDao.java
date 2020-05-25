@@ -20,18 +20,17 @@ public class IlanDao {
 
     private DBconnection connector;
     private Connection connection;
-    
+
     IlanTipiDao ilanTipiDao;
     KullaniciDao kullaniciDao;
     IlceDao ilceDao;
     EmlakDao emlakDao;
-    
+
     IlanTipi ilantipi;
     Kullanici kullanici;
     Ilce ilce;
-    Emlak emlak;            
+    Emlak emlak;
 
-    
     public List<Ilan> findAll() {
         List<Ilan> clist = new ArrayList<>();
         //DBconnection db = new DBconnection();
@@ -41,9 +40,9 @@ public class IlanDao {
             ResultSet rs = st.executeQuery("select * from ilan");
 
             while (rs.next()) {
-                Ilan ilan = new Ilan(rs.getInt("ilan_id"),rs.getString("ilan_baslik"),rs.getString("ilan_aciklama"),
-                rs.getInt("fiyat"), this.getIlantipi(rs.getInt("ilan_tip_id")), this.getKullanici(rs.getInt("kullanici_id")),
-                this.getIlce(rs.getInt("ilce_id")),this.getEmlak(rs.getInt("emlak_id")),rs.getString("iletisim_no"));
+                Ilan ilan = new Ilan(rs.getInt("ilan_id"), rs.getString("ilan_baslik"), rs.getString("ilan_aciklama"),
+                        rs.getInt("fiyat"), this.getIlantipi(rs.getInt("ilan_tip_id")), this.getKullanici(rs.getInt("kullanici_id")),
+                        this.getIlce(rs.getLong("ilce_id")), this.getEmlak(rs.getLong("emlak_id")), rs.getString("iletisim_no"));
                 clist.add(ilan);
 
             }
@@ -54,25 +53,25 @@ public class IlanDao {
         return clist;
 
     }
-    
-    public Ilan find(int id){
+
+    public Ilan find(int id) {
         try {
             Statement st = this.getConnection().createStatement();
             ResultSet rs = st.executeQuery("select * from ilan where ilan_id = " + id);
 
             if (rs.next()) {
-                Ilan ilan = new Ilan(rs.getInt("ilan_id"),rs.getString("ilan_baslik"),rs.getString("ilan_aciklama"),
-                rs.getInt("fiyat"), this.getIlantipi(rs.getInt("ilan_tip_id")), this.getKullanici(rs.getInt("kullanici_id")),
-                this.getIlce(rs.getInt("ilce_id")),this.getEmlak(rs.getInt("emlak_id")),rs.getString("iletisim_no"));
+                Ilan ilan = new Ilan(rs.getInt("ilan_id"), rs.getString("ilan_baslik"), rs.getString("ilan_aciklama"),
+                        rs.getInt("fiyat"), this.getIlantipi(rs.getInt("ilan_tip_id")), this.getKullanici(rs.getInt("kullanici_id")),
+                        this.getIlce(rs.getLong("ilce_id")), this.getEmlak(rs.getLong("emlak_id")), rs.getString("iletisim_no"));
                 return ilan;
 
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
-       Ilan hataliIlan = new Ilan();
-       return hataliIlan;
+
+        Ilan hataliIlan = new Ilan();
+        return hataliIlan;
     }
 
     public void insert(Ilan ilan) {
@@ -84,16 +83,16 @@ public class IlanDao {
             String ilanBaslik = ilan.getIlan_baslik();
             String ilanAciklama = ilan.getIlan_aciklama();
             int fiyat = ilan.getFiyat();
-            int kullaniciId = ilan.getKullanici().getKullaniciId();            
+            int kullaniciId = ilan.getKullanici().getKullaniciId();
             String iletisimNo = ilan.getIletisim_no();
-            
-            if(emlakId == 0 || ilanTipId == 0)
-                return;
-            
-            Statement st = this.getConnection().createStatement();
-            String query ="insert into ilan (ilan_baslik, ilan_aciklama, fiyat, ilan_tip_id, kullanici_id, ilce_id, emlak_id, iletisim_no) values ('" + ilanBaslik + "'"+ ", " + "'" + ilanAciklama + "'" + ", " + fiyat + ", " + ilanTipId + ", " + kullaniciId + ", " + ilceId + ", " + emlakId + ", '" + iletisimNo +"')";
-            st.executeUpdate(query);
 
+            if (emlakId == 0 || ilanTipId == 0) {
+                return;
+            }
+
+            Statement st = this.getConnection().createStatement();
+            String query = "insert into ilan (ilan_baslik, ilan_aciklama, fiyat, ilan_tip_id, kullanici_id, ilce_id, emlak_id, iletisim_no) values ('" + ilanBaslik + "'" + ", " + "'" + ilanAciklama + "'" + ", " + fiyat + ", " + ilanTipId + ", " + kullaniciId + ", " + ilceId + ", " + emlakId + ", '" + iletisimNo + "')";
+            st.executeUpdate(query);
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -107,7 +106,7 @@ public class IlanDao {
         try {
             Statement st = this.getConnection().createStatement();
 
-           st.executeUpdate("delete from ilan where ilan_id=" + ilan.getIlan_id());
+            st.executeUpdate("delete from ilan where ilan_id=" + ilan.getIlan_id());
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -136,14 +135,12 @@ public class IlanDao {
             Statement st = this.getConnection().createStatement();
 
             //st.executeUpdate("update kullanici set ad_soyad='" + kullanici.getAdSoyad() + "' where kullanici_id= " + kullanici.getKullaniciId());
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
 
         }
     }
-    
-    
+
     public IlanTipiDao getIlanTipiDao() {
         if (this.ilanTipiDao == null) {
             this.ilanTipiDao = new IlanTipiDao();
@@ -187,8 +184,8 @@ public class IlanDao {
     public void setEmlakDao(EmlakDao emlakDao) {
         this.emlakDao = emlakDao;
     }
-    
-      public IlanTipi getIlantipi(int id) {
+
+    public IlanTipi getIlantipi(int id) {
         return this.getIlanTipiDao().find(id);
     }
 
@@ -204,7 +201,7 @@ public class IlanDao {
         this.kullanici = kullanici;
     }
 
-    public Ilce getIlce(int id) {
+    public Ilce getIlce(Long id) {
         return this.getIlceDao().find(id);
     }
 
@@ -212,15 +209,12 @@ public class IlanDao {
         this.ilce = ilce;
     }
 
-    public Emlak getEmlak(int id) {
+    public Emlak getEmlak(Long id) {
         return this.getEmlakDao().find(id);
     }
 
     public void setEmlak(Emlak emlak) {
         this.emlak = emlak;
     }
-    
-    
-    
 
 }

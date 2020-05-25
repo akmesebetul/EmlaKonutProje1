@@ -29,7 +29,7 @@ public class IlceDao {
             while (rs.next()) {
                 //System.out.println(rs.getString("name"));
                 //Ilce constructor 3. paramtre olarak il nesnesi beklediği için veritabanından il idye gelen il nesnesini ildaodan aldık
-                Ilce ilce = new Ilce(rs.getInt("ilce_id"), rs.getString("ilce_adi"), this.getIlDao().find(rs.getInt("il_id")));
+                Ilce ilce = new Ilce(rs.getLong("ilce_id"), rs.getString("ilce_adi"), this.getIlDao().find(rs.getInt("il_id")));
                 clist.add(ilce);
 
             }
@@ -68,7 +68,7 @@ public class IlceDao {
             while (rs.next()) {
                 //System.out.println(rs.getString("name"));
                 //Ilce constructor 3. paramtre olarak il nesnesi beklediği için veritabanından il idye gelen il nesnesini ildaodan aldık
-                Ilce ilce = new Ilce(rs.getInt("ilce_id"), rs.getString("ilce_adi"), this.getIlDao().find(rs.getInt("il_id")));
+                Ilce ilce = new Ilce(rs.getLong("ilce_id"), rs.getString("ilce_adi"), this.getIlDao().find(rs.getInt("il_id")));
                 clist.add(ilce);
 
             }
@@ -80,14 +80,14 @@ public class IlceDao {
 
     }
 
-    public Ilce find(int id) {
+    public Ilce find(Long id) {
         try {
             Statement st = this.getConnection().createStatement();
             ResultSet rs = st.executeQuery("select * from ilce where ilce_id = " + id);
 
             if (rs.next()) {
                 //System.out.println(rs.getString("name"));
-                Ilce ilce = new Ilce(rs.getInt("ilce_id"), rs.getString("ilce_adi"), this.getIlDao().find(rs.getInt("il_id")));
+                Ilce ilce = new Ilce(rs.getLong("ilce_id"), rs.getString("ilce_adi"), this.getIlDao().find(rs.getInt("il_id")));
                 return ilce;
 
             }
