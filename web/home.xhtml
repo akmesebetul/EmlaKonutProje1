@@ -16,7 +16,11 @@ and open the template in the editor.
         <h1> Normal Kullanıcı Girişi Yapıldı </h1>
         <h:form>
             <h:commandButton styleClass="btn btn-sm btn-primary " action="#{loginController.openIlanGiris()}" value="İlan Ekle"/>
-     <h:commandButton styleClass="btn btn-sm btn-primary " action="#{loginController.logout()}" value="Çıkış Yap"/>
+            <h:commandButton styleClass="btn btn-sm btn-primary " action="#{loginController.logout()}" value="Çıkış Yap"/>
+
+            <h:commandButton styleClass="btn btn-sm btn-danger " action="/template/template?faces-redirect=true" value="Module"/>
+
+
         </h:form>
 
     </h:body>
