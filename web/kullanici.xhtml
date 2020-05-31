@@ -36,7 +36,7 @@
                     </h:form>
                 </div>
                 <div class="col-md-6">
-                    <h:form id="kullanici-form ">
+                    <h:form id="kullanici-form">
                         <div class="form-group">
                             <h:inputHidden value="#{kullaniciController.kullanici.kullaniciId}"/>
                             <label for="adii">Kullanıcı Adı </label>
@@ -64,8 +64,13 @@
                             </h:commandButton>
                             <h:commandButton rendered="#{kullaniciController.kullanici.kullaniciId != 0}" styleClass="btn btn-secondary" value="Clear Form" action="#{kullaniciController.clearForm}" >
                                 <f:ajax execute="kullanici-form" render="kullanici-form kullanici-table" />
-                            </h:commandButton>
+                            </h:commandButton>         
                         </div>
+                    </h:form>
+
+                    <h:form>
+                        <h:commandButton styleClass="btn btn-sm btn-primary " action="#{kullaniciController.goToIlan()}" value="İlanlar"/>
+                        <h:commandButton styleClass="btn btn-sm btn-primary " action="#{loginController.logout()}" value="Çıkış Yap"/>
                     </h:form>
                 </div>
             </div>

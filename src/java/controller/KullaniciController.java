@@ -46,6 +46,14 @@ public class KullaniciController implements Serializable {
         return "kullanici";
 
     }
+    
+     public String goToIlan() {
+        return "ilan";
+
+    }
+     
+    
+
 
     public String create() {
         this.getKullaniciDao().insert(this.kullanici);

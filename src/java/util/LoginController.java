@@ -32,7 +32,7 @@ public class LoginController implements Serializable {
             if (user.getAdminMi() == 1) {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("valid_user", this.user);
                 // Admin içine yönlendirince hata veriyor, admin içine yönlendirilecek
-                return "/ilan.xhtml";
+                return "/kullanici.xhtml";
             } //Normal geçerli kullanıcı durumu
             else {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("valid_user", this.user);
@@ -54,6 +54,11 @@ public class LoginController implements Serializable {
 
     public String openSignUpPage() {
         return "signup";
+
+    }
+    
+      public String userPage() {
+        return "kullanici";
 
     }
 

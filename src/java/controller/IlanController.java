@@ -56,6 +56,10 @@ public class IlanController implements Serializable {
             return "home";
         }
     }
+    
+     public String goToIlanGiris() {
+        return "ilangiris";
+    }
 
     public List<Ilan> getClist() {
         this.clist = this.getIlanDao().findAll();
