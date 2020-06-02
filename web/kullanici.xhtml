@@ -52,8 +52,7 @@
                             <h:message for="adsoyadi" style="color: red" />
 
                             <label for="adminmi">Admin mi </label>
-                            <h:inputText id="adminmi" styleClass="form-control" value="#{kullaniciController.kullanici.adminMi}" validator="#{validationBean.validate}" />
-                            <h:message for="adminmi" style="color: red" />
+                            <h:inputText id="adminmi" styleClass="form-control" value="#{kullaniciController.kullanici.adminMi}"/>
                         </div>
                         <div class="form-group">
                             <h:commandButton rendered="#{kullaniciController.kullanici.kullaniciId != 0}" styleClass="btn btn-info" value="Update" action="#{kullaniciController.update}" >
